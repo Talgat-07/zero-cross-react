@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ActionIcon, Center, SimpleGrid, Text } from "@mantine/core";
 import Square from "./Square";
 import { Moon, Refresh, Sun } from "tabler-icons-react";
+import "./Board.sass";
 
 const Board = ({ changeTheme, theme }) => {
   let yes = false;
@@ -37,7 +38,7 @@ const Board = ({ changeTheme, theme }) => {
   };
 
   return (
-    <Center sx={{ height: "100vh" }}>
+    <Center className="glCenter" sx={{ height: "100vh" }}>
       <ActionIcon color="blue" onClick={changeTheme}>
         {theme === "dark" ? <Sun /> : <Moon />}
       </ActionIcon>
@@ -56,14 +57,19 @@ const Board = ({ changeTheme, theme }) => {
         {yes ? (
           <center>
             Winner {isPlayer === "x" ? "O" : "X"}
-            <ActionIcon onClick={() => window.location.reload()}>
+            <ActionIcon color="blue" onClick={() => window.location.reload()}>
               <Refresh />
             </ActionIcon>
           </center>
         ) : isArr.includes(null) ? (
           <Text>Next - {isPlayer.toUpperCase()}</Text>
         ) : (
-          <Text>Not whose</Text>
+          <center>
+            <Text>Not whose</Text>
+            <ActionIcon color="blue" onClick={() => window.location.reload()}>
+              <Refresh />
+            </ActionIcon>
+          </center>
         )}
       </Center>
     </Center>
